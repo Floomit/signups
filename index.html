@@ -1,0 +1,338 @@
+<html>
+
+	<head>
+
+    	<meta charset="utf-8">
+    	<meta name="Description" CONTENT="The beginning of FLOWER, The end of BLOOM">
+
+		<meta name="viewport" content="width=device-width maximum-scale=1.0">
+		<meta name="viewport" content="width=device-width initial-scale=1.0">
+
+		<title> | FLOOM | </title>
+
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="https://malsup.github.io/jquery.cycle.lite.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="font/font.css">
+
+		<style>
+
+			* {
+				margin : 0;
+				padding: 0;
+				border : 0;
+				text-decoration: none;
+				-webkit-appearance: none;
+
+			}
+
+			body {
+			    background-color: #333;
+			    font-family: 'Circular Std Book';
+			}
+
+			textarea, input { outline: none; }
+
+			#stage {
+				width: 100%;
+				height: 100%;
+			}
+
+			#stage .flower {
+				width : 100%;
+				height: 100%;
+
+				background-size : cover;
+				background-position: center center;
+			}
+
+			#stage .flower.one {
+				background-image: url( "./images/flower-1.jpg" );
+			}
+
+			#stage .flower.two {
+				background-image: url( "./images/flower-2.jpg" );
+			}
+
+			#stage .flower.three {
+				background-image: url( "./images/flower-3.jpg" );
+			}
+
+
+			#overlay {
+				width : 288px;
+				height: 145px;
+
+				position: absolute;
+				left    : 50%;
+				top     : 50%;
+
+				margin-left  : -144px;
+				margin-top   : -73px;
+
+				z-index: 10;
+			}
+
+			#overlay #logo {
+				width : 288px;
+				height: 54px;
+			}
+
+			#social {
+				z-index: 10;
+
+				position: absolute;
+
+				bottom: 20px;
+
+				left: 50%;
+				margin-left: -60px;
+			}
+
+			#social img {
+				width : 32px;
+				height: 32px;
+
+				margin-right: 10px;
+			}
+
+			.be-the-first {
+				background-color: #f88d8d;
+				color           :   white;
+				height          :    45px;
+				width           :    100%;
+				box-sizing      : border-box;
+				font-size       : 15pt;
+				padding         : 10px;
+				text-align      : center;
+				border-radius   : 4px;
+				margin-top      : 45px;
+
+				cursor: pointer;
+			}
+
+			.be-the-first:hover {
+				background-color: #d44a4a;
+			}
+
+			#white-overlay {
+				background-color: white;
+
+				width: 100%;
+
+				height: 100%;
+
+				position: absolute;
+
+				top: 0;
+				left: 0;
+
+				z-index: 5;
+
+				background-color: rgba( 255, 255, 255, 0.5 );
+
+				opacity: 0;	
+
+			}
+
+			#subscribe {
+				position: absolute;
+
+				z-index: 10;
+
+				width : 288px;
+				height: 220px;
+
+				position: absolute;
+				left    : 50%;
+				top     : 50%;
+
+				margin-left  : -144px;
+				margin-top   : -110px;
+
+				z-index: 10;
+
+				display   : none;
+
+			}
+
+			#subscribe input {
+				width : 100%;
+				height: 45px;
+
+				text-align: center;
+
+				cursor: pointer;
+
+				font-weight: bold;
+				font-size  : 15px;
+
+				margin-bottom: 12px;
+
+				opacity: 0;
+
+				border-radius   : 4px;
+			}
+
+			.input-thingy:focus {
+				background-color: #ededed;
+				color           : black;
+			}
+
+			#subscribe input::-webkit-input-placeholder, 
+			#subscribe input:-moz-placeholder,
+			#subscribe input::-moz-placeholder, 
+			#subscribe input:-ms-input-placeholder {
+			   color: #ededed;
+			}
+
+			.input-thingy:focus::-webkit-input-placeholder {
+				color: black;
+			}
+
+			#subscribe input.submit {
+				background-color: #232323;
+				color           : #ededed;
+			}
+
+			#subscribe input.submit:hover, #subscribe input.submit:focus {
+				background-color: #000;
+				color           : white;
+			}
+
+		</style>
+
+		<script>
+
+			$( function(){
+
+    			var parent = $( "#stage" );
+
+    			var divs = parent.children();
+
+				while (divs.length) {
+					parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+				}
+
+				$( '#stage' ).cycle();
+
+
+				$( '.be-the-first' ).click( function(){
+
+					$( '#overlay' ).fadeOut( );
+
+					$( '#white-overlay' ).animate( { opacity: 1 } );
+
+					$( '#subscribe' ).show()
+
+					$( '#subscribe input' ).eq(0).delay(100).animate( { opacity: 1 } );
+
+					$( '#subscribe input' ).eq(1).delay(120).animate( { opacity: 1 } );
+
+					$( '#subscribe input' ).eq(2).delay(140).animate( { opacity: 1 } );
+
+					$( '#subscribe input' ).last().delay(160).animate( { opacity: 1 } );
+
+				} );
+
+				$( '#white-overlay' ).click( function(e){
+
+					$( '#subscribe' ).hide()
+
+					$( '#overlay' ).fadeIn()
+
+					$( '#white-overlay' ).animate( { opacity: 0 } );
+
+					$( '#subscribe input' ).eq(0).css( "opacity", 0 )
+
+					$( '#subscribe input' ).eq(1).css( "opacity", 0 )
+
+					$( '#subscribe input' ).eq(2).css( "opacity", 0 )
+
+					$( '#subscribe input' ).last().css( "opacity", 0 )
+
+				} );
+			} );
+
+
+		</script>
+	</head>
+
+<body>
+
+	<div id="overlay">
+
+		<img src="images/logo-retina.png" id="logo" />
+
+		<div class="be-the-first">
+			Be the first to know
+		</div>
+
+	</div>
+
+	<div id="subscribe">
+		<!-- Begin MailChimp Signup Form -->
+		<div id="mc_embed_signup">
+			<form action="//floom.us11.list-manage.com/subscribe/post?u=45d5135895571429f2061b2f2&amp;id=472780474c" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+				<div id="mc_embed_signup_scroll">
+					<div class="mc-field-group">
+						<input type="text" value="" name="FNAME" class="input-thingy" id="mce-FNAME" placeholder="First Name">
+					</div>
+
+					<div class="mc-field-group">
+						<input type="text" value="" name="LNAME" class="input-thingy" id="mce-LNAME" placeholder="Last Name">
+					</div>
+
+					<div class="mc-field-group">
+						<input type="email" value="" name="EMAIL" class="required email input-thingy" id="mce-EMAIL" placeholder="Email">
+					</div>
+
+
+					<div id="mce-responses" class="clear">
+
+						<div class="response" id="mce-error-response" style="display:none"></div>
+						<div class="response" id="mce-success-response" style="display:none"></div>
+
+					</div>
+
+					<div style="position: absolute; left: -5000px;">
+						<input type="text" name="b_45d5135895571429f2061b2f2_472780474c" tabindex="-1" value="">
+					</div>
+
+					<div class="clear">
+						<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button submit">
+					</div>
+
+				</div>
+
+			</form>
+		</div>
+
+		<!--End mc_embed_signup-->
+	</div>
+
+	<div id="white-overlay"></div>
+
+	<div id="social">
+		<a href="https://www.facebook.com/FloomOriginal/" target="_blank">
+			<img src="images/facebook-retina.png" />
+		</a>
+
+		<a href="https://instagram.com/floom.it" target="_blank">
+			<img src="images/instagram-retina.png" />
+		</a>
+
+		<a href="https://www.pinterest.com/floomit/" target="_blank">
+			<img src="images/pinterest.png" />
+		</a>
+	</div>
+
+	<div id="stage">
+		<div class='flower one'></div>
+		<div class='flower two'></div>
+		<div class='flower three'></div>
+	</div>
+
+</body>
+</html>
